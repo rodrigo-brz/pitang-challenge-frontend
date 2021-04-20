@@ -7,9 +7,9 @@ export default function DateInput(props) {
 
   return (
     <>
-      <label htmlFor={name}></label>
+      <label htmlFor={name}>{label}</label>
       <Field name={name}>
-        {({ form, field, meta }) => {
+        {({ form, field }) => {
           const { value } = field;
           const { setFieldValue } = form;
           return (
@@ -19,6 +19,9 @@ export default function DateInput(props) {
               {...rest}
               selected={value}
               onChange={(val) => setFieldValue(name, val)}
+              dateFormat={
+                rest.showTimeSelect ? 'dd/MM/yyyy - HH:mm' : 'dd/MM/yyyy'
+              }
             />
           );
         }}
