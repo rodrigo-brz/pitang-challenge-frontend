@@ -6,14 +6,18 @@ export default function DateInput(props) {
   const { label, name, ...rest } = props;
 
   return (
-    <>
-      <label htmlFor={name}>{label}</label>
+    <div className="form-group form-focus">
+      <label className="focus-label" htmlFor={name}>
+        {label}
+      </label>
       <Field name={name}>
         {({ form, field }) => {
           const { value } = field;
           const { setFieldValue } = form;
           return (
             <DatePicker
+              className="form-control floating"
+              autoComplete="off"
               id={name}
               {...field}
               {...rest}
@@ -22,11 +26,12 @@ export default function DateInput(props) {
               dateFormat={
                 rest.showTimeSelect ? 'dd/MM/yyyy - HH:mm' : 'dd/MM/yyyy'
               }
+              timeIntervals={30}
             />
           );
         }}
       </Field>
-      <ErrorMessage name={name} component="div" />
-    </>
+      <ErrorMessage component="span" className="error" name={name} />
+    </div>
   );
 }

@@ -1,10 +1,16 @@
-import { CreateAppointmentForm } from '../components/form';
+import PaginaFormulario from '../pages/PaginaFormulario';
+import ListaAgendamento from '../pages/ListaAgendamento';
 
 const routes = [
   {
-    component: CreateAppointmentForm,
-    name: 'Agendamento',
+    component: PaginaFormulario,
+    name: 'PaginaFormulario',
     path: '/agendamento',
+  },
+  {
+    component: ListaAgendamento,
+    name: 'Tabela Agendamento',
+    path: '/tabela',
   },
 ];
 

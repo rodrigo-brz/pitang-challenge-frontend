@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { DateInput } from '../../input';
+import { setHours, setMinutes } from 'date-fns';
+import { DateInput } from '../../Input';
 import { appointmentFormSchema } from '../../../services/validations/forms';
 
 const onSubmit = (values) => {
@@ -18,10 +19,12 @@ function CreateAppointmentForm() {
       }}
       render={({ isValid }) => (
         <Form>
-          <div>
-            <label htmlFor="name">Nome Completo</label>
-            <Field name="name" type="text" />
-            <ErrorMessage name="name" />
+          <div className="form-group form-focus">
+            <label className="focus-label" htmlFor="name">
+              Nome Completo
+            </label>
+            <Field className="form-control floating" name="name" type="text" />
+            <ErrorMessage component="span" className="error" name="name" />
           </div>
           <div>
             <DateInput name="birthday" label="Data de Nascimento:" />
@@ -31,10 +34,13 @@ function CreateAppointmentForm() {
               name="schedulingDate"
               label="Selecione uma Data e Horário"
               showTimeSelect
+              minDate={new Date()}
+              minTime={setHours(setMinutes(new Date(), 30), 7)}
+              maxTime={setHours(setMinutes(new Date(), 30), 17)}
             />
           </div>
 
-          <button type="submit" disabled={!isValid}>
+          <button className="btn btn-primary" type="submit" disabled={!isValid}>
             Enviar
           </button>
         </Form>
