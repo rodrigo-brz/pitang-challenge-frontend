@@ -1,20 +1,22 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import routes from "./routelist";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-const Routes = () => (
+import NavBar from '../components/NavBar';
+import routes from './routelist';
+
+const Router = () => (
   <BrowserRouter>
+    <NavBar />
     <Switch>
-      {routes.map((routes) => (
+      {routes.map((route) => (
         <Route
           exact
-          key={routes.path}
-          path={routes.path}
-          component={routes.component}
+          key={route.path}
+          path={route.path}
+          component={route.component}
         />
       ))}
     </Switch>
   </BrowserRouter>
 );
 
-export default Routes;
+export default Router;
